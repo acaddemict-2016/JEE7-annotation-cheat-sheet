@@ -19,6 +19,16 @@ Annotation    |  Explanation
 @PersistenceContext | A JPA annotation to inject the Entity Manager. Allows to give more configuration options.
 
 
+## Entities
+
+ Annotation    |  Explanation
+---------------|-------------------------------------------------
+ @Entity       | Turn a java bean into an entity that persists in the database.
+ @Id           | Indicates which attribute of an entity is used as the id.
+ @GeneratedValue | Often used in conjunction with `@Id`. It makes the database generate a value for this field.
+ 
+
+
 ## EJB's
 
 Annotation    |  Explanation
