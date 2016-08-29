@@ -17,6 +17,11 @@ Annotation    |  Explanation
 --------------|-------------------------------------------------
 @Inject       | No more `new`! Let the server create objects for you.
 @PersistenceContext | A JPA annotation to inject the Entity Manager. Allows to give more configuration options.
+@PostConstruct | It's dangerous to initialize variables of an injectable bean in a constructor. Use this annotation to mark a method that is run after construction. This method can be used to do setup.
+@Qualifier    | If the variable you want to inject is an abstract class or an interface, polymorphism will screw up the injection. To fix this, create an annotation with a name for each of the subclasses and use `@Qualifier` when implementing the annotation.
+@Alternative  |
+@Default      |
+@Produces     | Use this to inject things that are otherwise not injectable like strings, collections or classes without default constructor.
 
 
 ## Entities / JPA
