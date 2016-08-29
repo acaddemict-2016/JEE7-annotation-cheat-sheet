@@ -19,14 +19,34 @@ Annotation    |  Explanation
 @PersistenceContext | A JPA annotation to inject the Entity Manager. Allows to give more configuration options.
 
 
-## Entities
+## Entities / JPA
 
  Annotation    |  Explanation
 ---------------|-------------------------------------------------
  @Entity       | Turn a java bean into an entity that persists in the database.
+ @Inheritance  |
  @Id           | Indicates which attribute of an entity is used as the id.
+ @Version      |
  @GeneratedValue | Often used in conjunction with `@Id`. It makes the database generate a value for this field.
- 
+ @EmbeddedId   | Used if the id of an entity is another class. This is used for composite keys. Requires `@Embeddable` on the class that represents the key.
+ @Embeddable   | Use this to store the information of a class that's stored as variable into the entity's database table.
+ @Embeddable   | Makes a java bean embeddable into an entity. The fields of this embeddable class will appear in the database table of the entity it is embedded in.
+ @Valid        | Used together with `@Embedded` and `@EmbeddedId`. Makes sure that upon entity validation, the embedded class is also validated.
+ @Column       | Used to give configuration parameters about a field's column in the database. Useful options are `table` to create a separate table for a variable, `nullable` to make columns mandatory and `updatable`, which does exactly what you think it does.
+ @Temporal     | Store a field as a date. Give a `TemporalType` as option.
+ @Enumerated   | Store an enum value either as integer with `EnumType.ORDINAL` or as a string with `EnumType.STRING`.
+ @Transient    | Don't store a field in the database.
+ @Basic        |
+ @Lob          |
+ @ElementCollection | Similar to `@Embeddable`, but then for when you have a collection of `@Embeddable` objects. It creates a new table with a foreign key to the entity the `@Embeddable` is linked to. You can configure the newly created table with `@CollectionTable`.
+ @CollectionTable | Configure the table created with `@ElementCollection`.
+ @OneToMany     |
+ @ManyToOne     |
+ @OneToOne      |
+ @ManyToMany    |
+ @JoinColumn    |
+ @JoinColumns   |
+
 
 
 ## EJB's
