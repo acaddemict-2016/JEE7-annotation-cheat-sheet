@@ -6,9 +6,20 @@ A handy dandy overview of all the annotations that were crammed into our heads. 
 
  Annotation    |  Explanation
 ---------------|-------------------------------------------------
- @NotNull      |
- @Min          |
- @Max          |
+ @NotNull      | Value must not be null (not the same as not empty string!)
+ @Null         | Value must be null
+ @Min          | Value must be >=. Only for numeric fields
+ @Max          | Value must be <=. Only for numeric fields
+ @Past         | For java.util.Date/Calendar that must lie into the past (probably won't work with Java-8 date time api)
+ @Future       | For java.util.Date/Calendar that must lie into the future (probably won't work with Java-8 date time api)
+ @Pattern      | Use a regexp for validation
+ @Valid        | Makes sure validation also nests into marked association. Often used together with JPA's `@Embedded` and `@EmbeddedId`, which makes sure that upon entity validation, the embedded class is also validated.
+ @AssertFalse  | Value must be false
+ @AssertTrue   | Value must be true
+ @DecimalMax   | Value must be <=. Supports numerics and strings
+ @DecimalMin   | Value must be >=. Supports numerics and strings
+ @Digits       | Value must be numeric pattern with integer and fraction part. Works for string patterns and numbers
+ @Size		   | Min and max combined, for collections, String, arrays (and numbers also?)
 
 
 ## CDI
@@ -34,9 +45,8 @@ Annotation    |  Explanation
  @Version      |
  @GeneratedValue | Often used in conjunction with `@Id`. It makes the database generate a value for this field.
  @EmbeddedId   | Used if the id of an entity is another class. This is used for composite keys. Requires `@Embeddable` on the class that represents the key.
- @Embeddable   | Use this to store the information of a class that's stored as variable into the entity's database table.
+ @Embedded     | Use this to store the information of a class that's stored as variable into the entity's database table.
  @Embeddable   | Makes a java bean embeddable into an entity. The fields of this embeddable class will appear in the database table of the entity it is embedded in.
- @Valid        | Used together with `@Embedded` and `@EmbeddedId`. Makes sure that upon entity validation, the embedded class is also validated.
  @Column       | Used to give configuration parameters about a field's column in the database. Useful options are `table` to create a separate table for a variable, `nullable` to make columns mandatory and `updatable`, which does exactly what you think it does.
  @Temporal     | Store a field as a date. Give a `TemporalType` as option.
  @Enumerated   | Store an enum value either as integer with `EnumType.ORDINAL` or as a string with `EnumType.STRING`.
